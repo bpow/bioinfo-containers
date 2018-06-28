@@ -1,0 +1,19 @@
+BootStrap: debootstrap
+OSVersion: stretch
+MirrorURL: http://httpredir.debian.org/debian
+
+%help
+	A collection of tools for analysis of high-throughput sequence data
+
+%runscript
+    echo "I'm just going to go ahead and drop you into a shell..."
+	/bin/bash
+
+
+%post
+    set -eu
+    apt-get update
+    apt-get -y install --no-install-recommends bwa fastqc samtools bcftools tabix picard-tools
+    apt-get clean
+	rm -rf /var/lib/apt/lists/*
+
